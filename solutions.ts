@@ -14,7 +14,7 @@ const formatCoordinate = (coord: readonly [number, number, string]): string => {
   return `Location: ${location} (${latitude}, ${longitude})`;
 };
 
-const concatenateArrays = <T>(...arrays: T[]) => {
+const concatenateArrays = <T>(...arrays: T[][]): T[] => {
   return arrays.flat();
 };
 
@@ -39,31 +39,30 @@ const pluckValues = <T, K extends keyof T>(items: T[], key: K): T[K][] => {
 
 class Employee {
   protected name: string;
-  private _baseSalary: number;
+  private baseSalary: number;
 
   constructor(name: string, baseSalary: number) {
     this.name = name;
-    this._baseSalary = baseSalary;
+    this.baseSalary = baseSalary;
   }
 
-  getDetails() {
-    return `Employee: ${this.name}, Base Salary: ${this._baseSalary}`;
+  getDetails(): string {
+    return `Employee: ${this.name}, Base Salary: ${this.baseSalary}`;
   }
 }
 
 class Manager extends Employee {
-  private _department: string;
+  private department: string;
 
   constructor(name: string, baseSalary: number, department: string) {
     super(name, baseSalary);
-    this._department = department;
+    this.department = department;
   }
 
-  getRoleInfo() {
-    return `Manager of ${this._department}: ${this.name}`;
+  getRoleInfo(): string {
+    return `Manager of ${this.department}: ${this.name}`;
   }
 }
-
 
 const validateAgeAsync = async (age: number): Promise<string> => {
   if (age < 18) {
