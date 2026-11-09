@@ -9,4 +9,7 @@ const processInput = (value: number|string|boolean): string | number => {
     return "Inactive"
 }
 
-console.log(processInput(false))
+const formatCoordinate = (coord: readonly [number, number, string]): string => {
+    const [latitude, longitude, location] = coord
+    return `Location: ${location} (${latitude}, ${longitude})`;
+}
